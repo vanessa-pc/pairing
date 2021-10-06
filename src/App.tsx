@@ -1,7 +1,11 @@
-import { greet } from "./utils/greet";
-
+import { Pairings } from "./components/Pairings";
+import names from "./names.json"
 function App(): JSX.Element {
-  return <h1>{greet("World")}</h1>;
+  return (
+    <>
+    <Pairings names={names}/>
+    </>
+  );
 }
 
 export default App;
