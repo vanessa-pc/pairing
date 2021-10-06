@@ -1,38 +1,44 @@
 import { randomPair } from "../utils/randomPair"
+import { useState } from "react"
+import { useEffect } from "react"
 
 export function Pairings({names}: {names: string[]}): JSX.Element {
 
     const list = new Array<string[]>()    
+    const [pairings, setPairings] = useState<Array<string[]>>([])
 
-    while (names.length >= 2){
-        const pair = randomPair(names)
-      console.log(pair)
-        list.push(pair);
-        console.log(list)
-    }
- 
+    useEffect( () => {
+        const pairs = []
+        while (names.length >= 2){
+            const pair = randomPair(names)
+            console.log(pair)
+            pairs.push(pair)
+            console.log(list)
+        }
+        setPairings(pairs)
+    }, []) 
+  
+    console.log(pairings)
     return (
-        <>
-            <h2>The lab pairs for this week are:</h2>
-            <table>
+        <table>
             <thead>
                 <tr>
-                {list.map((item, index) => {
-                    return <th key={index}> Group {index+1} </th>;
-                })}
+                    <th>
+                    The lab pairs for this week are:                    
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                {list.map((item, index) => {
+                {pairings.map((item, index) => {
                     return(
-                        <tr key={index}>
-                            <td key={item[0]}> {item[0]}</td>
-                            <td key={item[1]}> {item[1]}</td>
-                        </tr>
+                        <td key={index}>
+                            Group {index+1}
+                            <tr key={item[0]}> {item[0]}</tr>
+                            <tr key={item[1]}> {item[1]}</tr>
+                        </td>
                     );
                 })}
             </tbody>
         </table>
-        </>
     );
 }
