@@ -16,10 +16,13 @@ export function Pairings({names}: {names: string[]}): JSX.Element {
             console.log(list)
         }
         setPairings(pairs)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []) 
   
     console.log(pairings)
     return (
+        <>
+        <button> Create list with random pairs</button>
         <table>
             <thead>
                 <tr>
@@ -40,5 +43,6 @@ export function Pairings({names}: {names: string[]}): JSX.Element {
                 })}
             </tbody>
         </table>
+        </>
     );
 }
